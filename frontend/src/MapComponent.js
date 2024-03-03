@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
-import { MapContainer, TileLayer, Marker, Popup, useMapEvents } from 'react-leaflet';
+import { MapContainer, TileLayer, Marker, Popup, useMapEvents, useMap } from 'react-leaflet'; // Added useMap to the import
 import L from 'leaflet'; // Import Leaflet
 import 'leaflet/dist/leaflet.css';
 import tombstone from './tombstone.svg'; // Adjust the path to where your image is located
 import axios from 'axios'; // Import axios for API requests
+import React, { useEffect, useState } from "react";
 
 const customIcon = new L.Icon({
   iconUrl: tombstone,
