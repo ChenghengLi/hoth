@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Home from './pages/home.js'
-import MapPage from './pages/map.js'
+import Home from './pages/HomePage.js'
+import MapPage from './pages/MapPage.js'
 function App() {
   return (
     <div className="App">
