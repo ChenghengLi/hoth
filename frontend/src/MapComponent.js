@@ -4,7 +4,7 @@ import 'leaflet/dist/leaflet.css';
 import tombstone from './tombstone.svg'; // Adjust the path to where your image is located
 import axios from 'axios'; // Import axios for API requests
 import React, { useEffect, useState } from "react";
-
+import {fetchObituaries, postObituary} from './data.js'
 const customIcon = new L.Icon({
   iconUrl: tombstone,
   iconSize: [35, 35], // Size of the icon
@@ -34,12 +34,27 @@ const Map = () => {
   const [searchQuery, setSearchQuery] = useState('');  
   const [mapCenter, setMapCenter] = useState([34.071907, -118.4523068]); // Initial map center
   const [mapZoom, setMapZoom] = useState(13); // Initial zoom level
-  
+  const [obituaries, setObituaries] = useState([]);
+  useEffect(() => {
+    const displayObituaries = async () => {
+      const fetchedObituaries = await fetchObituaries();
+      console.log(fetchedObituaries);
+      const initial_markers = fetchedObituaries.map(obituary => ({
+        label: obituary.name,
+        id : obituary.uid,
+        pos: [ obituary.latitude, obituary.longitude]
+      }));      
+      setMarkers(initial_markers)
+    };
+    displayObituaries();
+  }, []);
+
   const addMarker = (e) => {
     const newMarker = {
       id: Date.now(),
       pos: [e.lat, e.lng],
       label: '', // Initially no label
+      url: 'https://example.com',
     };
     setMarkers(currentMarkers => [...currentMarkers, newMarker]);
     // Set this new marker as selected for labeling
@@ -94,9 +109,16 @@ const Map = () => {
           <Marker key={marker.id} position={marker.pos} icon={customIcon} eventHandlers={{
             click: () => handleMarkerClick(marker.id, marker.label),
           }}>
-            <Popup>{marker.label}</Popup>
+            <Popup>
+              <div>
+                {marker.label}
+                <br />
+                <a href={marker.url} target="_blank" rel="noopener noreferrer">More Info</a>
+              </div>
+            </Popup>
           </Marker>
         ))}
+
       </MapContainer>
       <div style={{ position: 'absolute', top: '10px', left: '10px', zIndex: 1000 }}>
         <input
