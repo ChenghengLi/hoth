@@ -5,12 +5,12 @@ from typing import List
 import os
 import csv
 
-
 class ObituaryItem(BaseModel):
     UID: str
     name: str
     latitude: float
     longitude: float
+    
 
 def read_obituaries(filename):
     current_dir = os.path.dirname(__file__)
@@ -73,9 +73,6 @@ app.add_middleware(
 async def get_obituaries() -> List[ObituaryItem]:
     return  read_obituaries("obituaries.txt")
 
-@app.get("/", tags=["root"])
-async def read_root() -> dict:
-    return {"message": "Welcome to your todo list."}
 
 @app.post("/obituariesPost")
 async def post_obituary(item: ObituaryItem):
