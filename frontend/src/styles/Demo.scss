@@ -1,0 +1,55 @@
+// Variables
+//=======================================
+$layout-wsize: 10.56%;
+$layout-htsize: 14.45%;
+$layout-hbsize: 16.25%;
+$header-1: 50px;
+$description: 20px;
+$header-height: 8vh;
+
+p {
+  margin: 0;
+}
+
+.demo-wrap {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  margin-bottom: 2.5em;
+  margin-top: 2.5em;
+}
+
+.ladder {
+  height: 510px;
+  margin-top: 50px;
+}
+
+.demobox {
+  margin-left: -40px;
+  margin-right: -40px;
+}
+
+.pipi-animated {
+  animation: pipi-animation 5s both;
+  position: absolute;
+  z-index: 3;
+}
+
+@keyframes pipi-animation {
+  0% {
+    transform: translateX(0) translateY(0);
+  }
+
+  15% {
+    transform: translateX(-95px);
+  }
+
+  45% {
+    transform: translateY(192px) translateX(-95px);
+  }
+
+  100% {
+    transform: translateY(192px) translateX(550px);
+  }
+}

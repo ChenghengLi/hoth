@@ -1,0 +1,102 @@
+// General Layout
+//=======================================
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.diagramwrapper {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  gap: 3em;
+  justify-content: center;
+  margin-top: 10%;
+}
+
+.codebox {
+  background: rgba(133, 150, 190, 0.13);
+  background-color: rgba(133, 150, 190, 0.13);
+  display: flex;
+  flex-direction: column;
+  font-size: 21px;
+  gap: 0.25em;
+  justify-content: space-evenly;
+  margin: auto;
+  margin-bottom: 1.5em;
+  overflow-x: auto;
+  padding: 1em;
+  width: 80%;
+  width: fit-content;
+
+  p {
+    font-family: monospace;
+  }
+}
+
+.clicked {
+  background-color: #5d71a7;
+  border-radius: 5px;
+  display: flex;
+  font-family: monospace;
+  font-size: 21px;
+  justify-content: center;
+  margin: 0.5em;
+  padding: 10px 15px;
+  width: fit-content;
+
+  p {
+    color: white;
+  }
+}
+
+.notclicked {
+  display: flex;
+  font-family: monospace;
+  font-size: 21px;
+  justify-content: center;
+  margin: 0.5em;
+  padding: 5px 10px;
+  width: fit-content;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.arrow {
+  display: flex;
+  flex-direction: row;
+  width: 50%;
+}
+
+.indicators {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-bottom: 5%;
+  margin-top: 1%;
+}
+
+.resizedimage {
+  height: 30vh;
+  width: 16vw;
+}
+
+.resizedimage1 {
+  height: 30vh;
+  width: 100vw;
+}
+
+.resizedimage2 {
+  height: 45vh;
+  width: 37vw;
+}
+
+.resizedimage3 {
+  height: auto;
+  width: auto;
+}
