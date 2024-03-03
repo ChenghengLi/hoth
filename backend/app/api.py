@@ -1,13 +1,43 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
+from typing import List
+import os
+import csv
 
 
-class Item(BaseModel):
+class ObituaryItem(BaseModel):
+    UID: str
     name: str
-    description: str 
-    price: float
-    tax: float 
+    latitude: float
+    longitude: float
+
+def read_obituaries(filename):
+    current_dir = os.path.dirname(__file__)
+    file_path = os.path.join(current_dir, filename)
+    with open(file_path, 'r') as file:
+        lines = file.readlines()
+        obituaries = []
+        for line in lines[1:]:  # Skip the header line
+            UID, name, latitude, longitude = line.strip().split(',')
+            obituary_item = ObituaryItem(
+                UID=UID,
+                name=name,
+                latitude=float(latitude),
+                longitude=float(longitude)
+            )
+            obituaries.append(obituary_item)
+    return obituaries
+
+def write_obituaries(filename, item):
+    current_dir = os.path.dirname(__file__)
+    file_path = os.path.join(current_dir, filename)
+    with open(file_path, mode='a', newline='') as file:
+        writer = csv.writer(file)
+        writer.writerow([item.UID, item.name, item.latitude, item.longitude])
+
+
+
 
 
 app = FastAPI()
@@ -38,16 +68,16 @@ app.add_middleware(
 )
 
 
-@app.get("/obituaries", tags=["todos"])
-async def get_todos() -> str:
-    return   "Welcome to Parcel Pointers! This learning lab is designed to help you learn everything about pointers and how they are used by following our robot Pipi through a warehouse. By the end of the learning lab, hopefully you should know how and where to use pointers in your own projects!"
 
+@app.get("/obituariesGet", tags=["todos"])
+async def get_obituaries() -> List[ObituaryItem]:
+    return  read_obituaries("obituaries.txt")
 
 @app.get("/", tags=["root"])
 async def read_root() -> dict:
     return {"message": "Welcome to your todo list."}
 
-@app.post("/items/")
-async def create_item(item: Item):
-    print(item)
+@app.post("/obituariesPost")
+async def post_obituary(item: ObituaryItem):
+    write_obituaries("obituaries.txt", item)
     return item
