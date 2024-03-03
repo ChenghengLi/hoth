@@ -3,6 +3,8 @@ import { MapContainer, TileLayer, Marker, Popup, useMapEvents } from 'react-leaf
 import L from 'leaflet'; // Import Leaflet
 import 'leaflet/dist/leaflet.css';
 import tombstone from './tombstone.svg'; // Adjust the path to where your image is located
+import axios from 'axios'; // Import axios for API requests
+
 const customIcon = new L.Icon({
   iconUrl: tombstone,
   iconSize: [35, 35], // Size of the icon
@@ -16,19 +18,28 @@ const MapClickHandler = ({ onMapClick }) => {
   });
   return null;
 };
+const UpdateMapView = ({ center, zoom }) => {
+  const map = useMap(); // Access the map instance
+  useEffect(() => {
+    map.setView(center, zoom); // Update map's center and zoom level
+  }, [center, zoom, map]); // Re-run effect if center or zoom changes
+
+  return null;
+};
 
 const Map = () => {
   const [markers, setMarkers] = useState([]);
   const [selectedMarkerId, setSelectedMarkerId] = useState(null);
   const [editLabel, setEditLabel] = useState('');
-  const zoom = 13;
-  const initialPosition = [34.071907, -118.4523068];
-
-  const addMarker = (e) => {
+  const [searchQuery, setSearchQuery] = useState('');  
+  const [mapCenter, setMapCenter] = useState([34.071907, -118.4523068]); // Initial map center
+  const [mapZoom, setMapZoom] = useState(13); // Initial zoom level
+  
+  const addMarker = (e, label = 'Click to add label') => {
     const newMarker = {
       id: Date.now(),
-      pos: [e.latlng.lat, e.latlng.lng],
-      label: 'Click to add label', // Default label
+      pos: [e.lat, e.lng],
+      label, // Default label or search result
     };
     setMarkers(currentMarkers => [...currentMarkers, newMarker]);
   };
@@ -45,14 +56,36 @@ const Map = () => {
     setEditLabel(''); // Clear edit field
   };
 
+  const handleSearch = async () => {
+    if (!searchQuery) return;
+    try {
+      const response = await axios.get(`https://nominatim.openstreetmap.org/search?format=json&q=${searchQuery}`);
+      if (response.data[0]) {
+        const { lat, lon } = response.data[0];
+        const position = { lat, lng: lon };
+        const newCenter = [lat, lon];
+        setMapCenter(newCenter); // Update map center
+        setMapZoom(15); // Optionally set a new zoom level  
+        addMarker(position, searchQuery); // Add marker with search query as label
+        setSearchQuery(''); // Clear search field
+      } else {
+        alert('Location not found. Please try another search.');
+      }
+    } catch (error) {
+      console.error('Failed to fetch location', error);
+      alert('Error searching for location. Please try again later.');
+    }
+  };
+
   return (
     <div style={{ position: 'relative', height: '100vh' }}>
-      <MapContainer center={initialPosition} zoom={zoom} style={{ height: '100%', width: '100%' }}>
+    <MapContainer center={mapCenter} zoom={mapZoom} style={{ height: '100%', width: '100%' }}>
         <TileLayer
           attribution='&copy; <a href="https://osm.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
-        <MapClickHandler onMapClick={addMarker} />
+        <UpdateMapView center={mapCenter} zoom={mapZoom} />
+        <MapClickHandler onMapClick={(e) => addMarker(e.latlng)} />
         {markers.map(marker => (
           <Marker key={marker.id} position={marker.pos} icon={customIcon} eventHandlers={{
             click: () => handleMarkerClick(marker.id, marker.label),
@@ -61,8 +94,17 @@ const Map = () => {
           </Marker>
         ))}
       </MapContainer>
+      <div style={{ position: 'absolute', top: '10px', left: '10px', zIndex: 1000 }}>
+        <input
+          type="text"
+          placeholder="Search for a location"
+          value={searchQuery}
+          onChange={e => setSearchQuery(e.target.value)}
+        />
+        <button onClick={handleSearch}>Search</button>
+      </div>
       {selectedMarkerId && (
-        <div style={{ position: 'absolute', top: '10px', left: '100px', zIndex: 1000 }}>
+        <div style={{ position: 'absolute', top: '100px', left: '10px', zIndex: 1000 }}>
           <input
             type="text"
             placeholder="Edit label"
