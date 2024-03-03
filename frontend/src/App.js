@@ -5,9 +5,6 @@ import MapPage from './pages/MapPage.js'
 function App() {
   return (
     <div className="App">
-        <header>
-        <button className="login-btn">Log In</button>
-    </header>
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />}></Route>
