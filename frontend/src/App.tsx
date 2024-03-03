@@ -1,8 +1,7 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import Home from './pages/Home';
-
-
+import MyMapComponent from './pages/MyMapComponent';
 
 
 function App(): JSX.Element {
@@ -10,7 +9,7 @@ function App(): JSX.Element {
     <>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Home />} />s
+        <MyMapComponent />s
         </Routes>
       </BrowserRouter>
     </>
