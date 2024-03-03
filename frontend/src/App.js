@@ -1,14 +1,20 @@
 import React from 'react';
-import Home from './pages/home.js'
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-
+import Home from './pages/home.js'
+import MapPage from './pages/map.js'
 function App() {
   return (
     <div className="App">
         <header>
-        <button class="login-btn">Log In</button>
+        <button className="login-btn">Log In</button>
     </header>
-    <Home />
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />}></Route>
+        <Route path="/map" element={<MapPage />}></Route>
+      </Routes>
+    </BrowserRouter>
+    
       
     </div>
   );
