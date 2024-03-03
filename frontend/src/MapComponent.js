@@ -1,6 +1,16 @@
 import React, { useState } from 'react';
 import { MapContainer, TileLayer, Marker, Popup, useMapEvents } from 'react-leaflet';
+import L from 'leaflet'; // Import Leaflet
 import 'leaflet/dist/leaflet.css';
+import tombstone from './tombstone.svg'; // Adjust the path to where your image is located
+
+// Define a custom icon
+const customIcon = new L.Icon({
+  iconUrl: tombstone, // URL to your custom image
+  iconSize: [35, 35], // Size of the icon
+  iconAnchor: [17, 35], // Point of the icon which will correspond to marker's location
+  popupAnchor: [0, -35], // Point from which the popup should open relative to the iconAnchor
+});
 
 const MapClickHandler = ({ onMapClick, mode }) => {
   useMapEvents({
@@ -15,7 +25,6 @@ const MapClickHandler = ({ onMapClick, mode }) => {
 };
 
 const Sidebar = ({ markers }) => {
-  // Simple sidebar to list marker labels
   return (
     <div style={{ position: 'absolute', top: 0, right: 0, background: 'white', padding: '20px' }}>
       <h4>Labels</h4>
@@ -56,7 +65,7 @@ const Map = () => {
         />
         <MapClickHandler onMapClick={addMarker} mode={mode} />
         {markers.map(marker => (
-          <Marker key={marker.id} position={marker.pos}>
+          <Marker key={marker.id} position={marker.pos} icon={customIcon}>
             <Popup>{marker.label}</Popup>
           </Marker>
         ))}
