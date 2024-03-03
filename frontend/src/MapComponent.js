@@ -35,14 +35,18 @@ const Map = () => {
   const [mapCenter, setMapCenter] = useState([34.071907, -118.4523068]); // Initial map center
   const [mapZoom, setMapZoom] = useState(13); // Initial zoom level
   
-  const addMarker = (e, label = 'Click to add label') => {
+  const addMarker = (e) => {
     const newMarker = {
       id: Date.now(),
       pos: [e.lat, e.lng],
-      label, // Default label or search result
+      label: '', // Initially no label
     };
     setMarkers(currentMarkers => [...currentMarkers, newMarker]);
+    // Set this new marker as selected for labeling
+    setSelectedMarkerId(newMarker.id);
+    setEditLabel(''); // Reset edit label to be empty, ready for input
   };
+  
 
   const handleMarkerClick = (markerId, currentLabel) => {
     setSelectedMarkerId(markerId);
