@@ -1,11 +1,14 @@
 import React from 'react';
 import SearchBar from './../componentes/SearchBar.js'
+import "./../styles/HomePage.css"
+import Background from './../assets/HomeBackground.svg';
+
+
 const Home = () => {
   return (
-    <div className="Home">
-        <h1 className="title">Ebituary</h1>
-        <p className="slogan">Remembering Lives, Connecting Hearts, Sending Love</p>
-        <div className="search-container">
+    <div className="home-container">
+      <img src={Background} className="home-background" alt="Background" />
+      <div className="searchbar-container">
         <SearchBar />
       </div>
     </div>
@@ -13,3 +16,6 @@ const Home = () => {
 };
 
 export default Home;
+
+
+

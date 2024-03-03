@@ -1,0 +1,59 @@
+.Home{
+    background-color: #F9F0FF;
+    
+
+}
+
+.navbar {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 20px;
+  }
+
+
+.login-button {
+    background-color: #f4f4f9;
+    border: 1px solid #ccc;
+    padding: 10px 20px;
+    cursor: pointer;
+  }
+
+  .content {
+    text-align: center;
+  }
+
+
+  .Home .title{
+    background-color: rgba(192, 128, 255, 0.5);
+    color: #000000;
+    display: inline-block;
+    padding: 15px 80px;
+    border-radius: 10px;
+    position: relative;
+    margin: auto;
+    margin-top:10%;
+  }
+
+  .home-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .home-background {
+    width: 100%;
+    object-fit: cover; 
+    position: absolute; 
+    top: 0;
+    left: 0;
+    z-index: -1; /* Place it behind the search bar */
+  }
+  
+  .searchbar-container {
+    position: absolute; /* Position your search bar absolutely */
+    top: 67%; /* Adjust these values to position the search bar as needed */
+    z-index: 10; /* Ensure the search bar is above the background image */
+    width: 40%;
+  }
+  
