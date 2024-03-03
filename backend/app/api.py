@@ -38,7 +38,7 @@ app.add_middleware(
 )
 
 
-@app.get("/todo", tags=["todos"])
+@app.get("/obituaries", tags=["todos"])
 async def get_todos() -> str:
     return   "Welcome to Parcel Pointers! This learning lab is designed to help you learn everything about pointers and how they are used by following our robot Pipi through a warehouse. By the end of the learning lab, hopefully you should know how and where to use pointers in your own projects!"
 
