@@ -1,4 +1,3 @@
-import React from 'react';
 import { FC, useEffect, useState} from 'react';
 import LandingBackground from '../../public/LandingBackground.png';
 import AppWrapper from '../components/AppWrapper';
