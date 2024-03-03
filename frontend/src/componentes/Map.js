@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { MapContainer, TileLayer, Marker, Popup, useMapEvents } from 'react-leaflet';
 import L from 'leaflet'; // Import Leaflet
 import 'leaflet/dist/leaflet.css';
-import tombstone from './tombstone.svg'; // Adjust the path to where your image is located
+import tombstone from './../tombstone.svg'; // Adjust the path to where your image is located
 const customIcon = new L.Icon({
   iconUrl: tombstone,
   iconSize: [35, 35], // Size of the icon
