@@ -1,10 +1,15 @@
 import React from 'react';
-import MapComponent from './MapComponent'; // Adjust the path according to your file structure
+import Home from './pages/home.js'
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 function App() {
   return (
     <div className="App">
-      <MapComponent />
+        <header>
+        <button class="login-btn">Log In</button>
+    </header>
+    <Home />
+      
     </div>
   );
 }
