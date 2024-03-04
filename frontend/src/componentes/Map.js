@@ -103,7 +103,6 @@ const Map = () => {
         const newCenter = [lat, lon];
         setMapCenter(newCenter); // Update map center
         setMapZoom(15); // Optionally set a new zoom level  
-        addMarker(position, searchQuery); // Add marker with search query as label
       } else {
         alert('Location not found. Please try another search.');
       }
