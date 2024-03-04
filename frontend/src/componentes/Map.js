@@ -5,7 +5,7 @@ import tombstone from '../assets/tombstone.svg'; // Adjust the path to where you
 import axios from 'axios'; // Import axios for API requests
 import React, { useEffect, useState } from "react";
 import {fetchObituaries} from '../data.js'
-import { useLocation } from 'react-router-dom';
+import { useLocation, Link } from 'react-router-dom';
 import VideoScreen from './video.js'; 
 
 const customIcon = new L.Icon({
@@ -127,7 +127,7 @@ const Map = ({ lat = 34.071907, lon = -118.4523068}) => {
               <div>
                 {marker.label}
                 <br />
-                <a href={marker.url} target="_blank" rel="noopener noreferrer">More Info</a>
+                <Link to="/obituary" target="_blank" rel="noopener noreferrer">Go to ebituary</Link>
               </div>
             </Popup>
           </Marker>
