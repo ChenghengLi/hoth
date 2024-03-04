@@ -9,6 +9,7 @@ const NewTombstone = () => {
     name: '',
     dateOfBirth: '',
     datePassedAway: '',
+    burialLocation: '',
   });
 
   const handleChange = (e) => {
@@ -28,8 +29,8 @@ const NewTombstone = () => {
   return (
     <form onSubmit={handleSubmit}>
         <img src={tombstone} alt="Tombstone" className="tombstone-image" />
-      <div>
-        <label htmlFor="name">NAME:</label>
+      <div className="formQuestion">
+        <label htmlFor="name">Name:</label>
         <input
           type="text"
           id="name"
@@ -38,8 +39,8 @@ const NewTombstone = () => {
           onChange={handleChange}
         />
       </div>
-      <div>
-        <label htmlFor="dateOfBirth">DATE OF BIRTH:</label>
+      <div className="formQuestion">
+        <label htmlFor="dateOfBirth">Date of Birth:</label>
         <input
           type="date"
           id="dateOfBirth"
@@ -48,8 +49,8 @@ const NewTombstone = () => {
           onChange={handleChange}
         />
       </div>
-      <div>
-        <label htmlFor="datePassedAway">DATE PASSED AWAY:</label>
+      <div className="formQuestion">
+        <label htmlFor="datePassedAway">Date Passed Away:</label>
         <input
           type="date"
           id="datePassedAway"
@@ -58,7 +59,17 @@ const NewTombstone = () => {
           onChange={handleChange}
         />
       </div>
-      <button type="submit">Submit</button>
+      <div className="formQuestion">
+        <label htmlFor="burialLocation">Burial Location:</label>
+        <input
+          type="text"
+          id="burialLocation"
+          name="burialLocation"
+          value={formData.burialLocation}
+          onChange={handleChange}
+        />
+      </div>
+      <button type="submit" className="submitButton">Submit</button>
     </form>
   );
 };

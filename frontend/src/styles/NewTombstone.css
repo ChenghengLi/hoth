@@ -7,7 +7,7 @@ body {
   
   form {
     max-width: 500px;
-    margin: 20px auto;
+    margin: 130px auto;
     padding: 20px;
     background-color: #fff;
     border-radius: 8px;
@@ -75,4 +75,16 @@ body {
   input[type="text"], input[type="date"] {
     background-color: var(--input-background);
     border-color: var(--input-border);
+  }
+
+  .submitButton {
+    margin-top:30px;
+    border-radius: 8px;
+    background-color: #7469B6;
+    width: 250px;
+    margin-left:130px;
+  }
+
+  .formQuestion {
+    margin: 20px;
   }
