@@ -1,23 +1,4 @@
-.Home{
-    background-color: #F9F0FF;
-    
 
-}
-
-.navbar {
-    position: absolute;
-    top: 0;
-    right: 0;
-    padding: 20px;
-  }
-
-
-.login-button {
-    background-color: #f4f4f9;
-    border: 1px solid #ccc;
-    padding: 10px 20px;
-    cursor: pointer;
-  }
 
   .content {
     text-align: center;

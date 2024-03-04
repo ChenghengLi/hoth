@@ -1,64 +1,56 @@
-import React, { useState, useEffect } from 'react';
-import '../styles/ObituaryPage.css'; 
+import React from 'react';
+import Background from './../assets/ObituaryBackground.svg';
+import './../styles/ObituaryPage.css'
+import LeaveFlower from './../assets/action/leaveaflower.svg'
+import Note from './../assets/action/note.svg'
+import f1 from './../assets/flowers/flowerblue.svg'
+import f2 from './../assets/flowers/flowerbrightblue.svg'
+import f3 from './../assets/flowers/flowerfuchsia.svg'
+import f4 from './../assets/flowers/flowerpurple.svg'
+import f5 from './../assets/flowers/flowertulip.svg'
+import f6 from './../assets/flowers/flowerviolet.svg'
+import f7 from './../assets/flowers/flowerwhite.svg'
+import f8 from './../assets/flowers/floweryellow.svg'
+import "@fontsource/eb-garamond";
+
 
 const ObituaryPage = () => {
-  const [tributes, setTributes] = useState([]);
-
-  useEffect(() => {
-    loadTributes();
-  }, []);
-
-  const loadTributes = () => {
-    // Simulate fetching existing tributes (e.g., from a server)
-    const sampleTribute = {
-      flowerCount: 3,
-      note: "In loving memory. You will be dearly missed.",
-    };
-    setTributes([sampleTribute]); // Set the initial tribute
-  };
-
-  const submitTribute = () => {
-    const flowerCount = document.getElementById("flowerCount").value;
-    const note = document.getElementById("note").value;
-
-    const newTribute = {
-      flowerCount,
-      note,
-    };
-
-    setTributes([...tributes, newTribute]); // Add the new tribute to the state
-
-    // Clear the form fields
-    document.getElementById("flowerCount").value = 1;
-    document.getElementById("note").value = "";
-  };
-
-  return (
-    <div className="container">
-      <header>
-        <h1>In Loving Memory of [Name]</h1>
-        <p>Birthdate: [Birthdate] - Passing Date: [Passing Date]</p>
-      </header>
-      <section className="tributes">
-        <h2>Tributes</h2>
-        <div id="tribute-list">
-          {tributes.map((tribute, index) => (
-            <div key={index} className="tribute-item">
-              <p>{tribute.flowerCount} Virtual Flowers</p>
-              <p>{tribute.note}</p>
-            </div>
-          ))}
+    return (
+        <>
+      <div className="obituary-container">
+        <img src={Background} className="obituary-background" alt="Background" />
+        <div className="name-container">
+            <h1 className="p1">In Loving Memory of </h1>
         </div>
-        <form id="tribute-form">
-          <label htmlFor="flowerCount">Send Virtual Flowers:</label>
-          <input type="number" id="flowerCount" min="1" value="1" required />
-          <label htmlFor="note">Write a Note:</label>
-          <textarea id="note" rows="4" required></textarea>
-          <button type="button" onClick={submitTribute}>Submit Tribute</button>
-        </form>
-      </section>
     </div>
-  );
-};
+      <div className="other">
+        <div className="flowerList">
+            <img src={LeaveFlower }  className="actionImg  p4"/>
+            <span className="flowertext p3 p5">Send Flowers</span>
+             <img src={f1}  className="flowerImg" />
+             <img src={f2}   className="flowerImg"/>
+             <img src={f3}   className="flowerImg"/>
+             <img src={f4}   className="flowerImg"/>
+             <img src={f5}   className="flowerImg"/>
+             <img src={f6}   className="flowerImg"/>
+             <img src={f7}   className="flowerImg"/>
+             <img src={f8}   className="flowerImg p5"/>
+             <button class="p4 sendButton">Send</button>
+        </div>
+        <div className="flowerList">
+            <img src={Note }  className="actionImg p4"/>
+            <span className="flowertext p3 p5">Write Messages</span>
+                <textarea className="messageBox p5" placeholder="Your message here"></textarea>
+                <button class="p4 sendButton">Post</button>
+        </div>
+    </div>
+    <div>
+            <span className="flowertext p3 messageBlock">Messages:</span>
+    </div>
 
-export default ObituaryPage;
+      </>
+    );
+  };
+  
+  export default ObituaryPage;
+  
