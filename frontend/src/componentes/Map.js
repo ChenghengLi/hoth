@@ -6,7 +6,7 @@ import axios from 'axios'; // Import axios for API requests
 import React, { useEffect, useState } from "react";
 import {fetchObituaries} from '../data.js'
 import { useLocation } from 'react-router-dom';
-import VideoScreen from './VideoScreen'; 
+import VideoScreen from './video.js'; 
 
 const customIcon = new L.Icon({
   iconUrl: tombstone,
@@ -113,8 +113,8 @@ const Map = () => {
   };
 
   return (
-    <div style={{ position: 'relative', height: '100vh' }}>
-    <MapContainer center={mapCenter} zoom={mapZoom} style={{ height: '100%', width: '100%' }}>
+    <div style={{ position: 'relative', height: '70vh' }}>
+    <MapContainer center={mapCenter} zoom={mapZoom} style={{ height: '70%' }}>
         <TileLayer
           attribution='&copy; <a href="https://osm.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -136,16 +136,6 @@ const Map = () => {
         ))}
 
       </MapContainer>
-      <div style={{ position: 'absolute', top: '10px', left: '50px', zIndex: 1000 }}>
-        <input
-          type="text"
-          placeholder="Search for a location"
-          value={searchQuery}
-          onChange={e => setSearchQuery(e.target.value)}
-          onKeyDown={handleKeyDown}
-        />
-        <button onClick={handleSearch}>Search</button>
-      </div>
 
     </div>
   );
