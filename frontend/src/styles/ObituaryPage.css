@@ -4,7 +4,13 @@
     align-items: center;
   }
 
+.fix_flower{
+  position: fixed;
+  top:28%; /* Y coordinate */
+  left: 31%; /* X coordinate */
+  width: 120px;
 
+}
 .obituary-background{
     width:100%;
     z-index: -1
