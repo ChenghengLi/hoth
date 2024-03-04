@@ -1,68 +1,83 @@
-body {
-    font-family: EB Garamond, 'Times New Roman', Times, serif;
-    margin: 0;
-    padding: 0;
-    background-color: #F8F0FF;
-}
-
-.container {
-    max-width: 800px;
-    margin: 20px auto;
-    background-color: #fff;
-    padding: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-header {
-    text-align: center;
-    margin-bottom: 20px;
-    color: #200040;
-}
-
-header h1 {
-    color: #400080;
-}
-
-header p {
-    color: #666;
-}
-
-.tributes {
-    border-top: 2px solid #ddd;
-    padding-top: 20px;
-}
-
-#tribute-list {
-    margin-bottom: 20px;
-}
-
-.tribute-item {
-    border-bottom: 1px solid #ddd;
-    padding: 10px 0;
-}
-
-.tribute-item p {
-    margin: 0;
-}
-
-#tribute-form {
+.obituary-container {
     display: flex;
-    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+
+.obituary-background{
+    width:100%;
+    z-index: -1
 }
 
-label {
-    margin-bottom: 5px;
+  
+  .name-container {
+    position: absolute; /* Position your search bar absolutely */
+    top: 42%; /* Adjust these values to position the search bar as needed */
+    z-index: 1; /* Ensure the search bar is above the background image */
+    width: 40%;
+  }
+
+  .other{
+    position:absolute;
+    top: 60%;
+    left:15%;
+    z-index: 1;
+    width:100%;
+    align-items: center;
+
+  }
+
+  .actionImg{
+    max-width: 3%;
+  }
+
+  .flowerImg{
+    max-width: 2%;
+    padding-top:15px;
+  }
+
+  .flowertext{
+    margin-bottom: 0
+  }
+
+  .flowerList{
+    display:flex;
+    flex-direction: row;
+  }
+
+.messageBox{
+    margin-top: 25px;
+    padding-top: 8px;
+    padding-left: 5px;
+    height: 20px;
+    width: 300px;
+    border-radius: 3;
 }
 
-input, textarea {
-    margin-bottom: 10px;
-    padding: 8px;
+.p1{
+    font-family: "EB Garamond";
 }
 
-button {
-    padding: 10px;
-    background-color: #200040;
-    color: #F8F0FF;
-    border: none;
-    cursor: pointer;
+.p3{
+    font-size:1.5em;
+    padding-top: 27px;
+    font-family: "EB Garamond";
+
+}
+
+.p4{
+    margin-right: 20px;
+}
+
+
+.p5{
+    margin-right: 40px;
+}
+ 
+
+
+.sendButton{
+    margin-top:24px;
+    height:34px;
 }
