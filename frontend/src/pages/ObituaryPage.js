@@ -34,15 +34,20 @@ const ObituaryPage = () => {
              <img src={f5}   className="flowerImg"/>
              <img src={f6}   className="flowerImg"/>
              <img src={f7}   className="flowerImg"/>
-             <img src={f8}   className="flowerImg"/>
+             <img src={f8}   className="flowerImg p5"/>
+             <button class="p4 sendButton">Send</button>
         </div>
         <div className="flowerList">
             <img src={Note }  className="actionImg p4"/>
-            <span className="flowertext p3 p5">Write a message</span>
-                <textarea className="messageBox p4" placeholder="Your message here"></textarea>
-                <button class="p4 sendButton">send</button>
-            </div>
+            <span className="flowertext p3 p5">Write Messages</span>
+                <textarea className="messageBox p5" placeholder="Your message here"></textarea>
+                <button class="p4 sendButton">Post</button>
         </div>
+    </div>
+    <div>
+            <span className="flowertext p3 messageBlock">Messages:</span>
+    </div>
+
       </>
     );
   };

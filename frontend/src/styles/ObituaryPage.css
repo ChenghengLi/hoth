@@ -80,4 +80,16 @@
 .sendButton{
     margin-top:24px;
     height:34px;
+    font-family: "EB Garamond";
 }
+
+.messageBlock{
+    position:absolute;
+    top: 75%;
+    left:15%;
+    z-index: 1;
+    width:100%;
+    align-items: center;
+}
+
+
