@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import "../styles/NewTombstone.css"
 import tombstone from '../assets/tombstone.svg';
+import {postObituary} from '../data.js'
+import axios from 'axios'; 
 
 const NewTombstone = () => {
   const navigate = useNavigate();
@@ -20,10 +22,31 @@ const NewTombstone = () => {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(formData); // Process the form data as needed
-    navigate('/thank-you'); // Redirect to another page, e.g., a thank you page
+    console.log(formData);
+
+    try {
+      const searchQuery = encodeURIComponent(formData.burialLocation);
+      const response = await axios.get(`https://nominatim.openstreetmap.org/search?format=json&q=${searchQuery}`);
+      console.log(response.data)
+      if (response.data && response.data.length > 0) {
+        const { lat, lon } = response.data[0];
+        const updatedFormData = {
+          'name':formData.name,
+          'UID': formData.datePassedAway,
+          'latitude' : lat,
+          'longitude': lon
+        };
+        await postObituary(updatedFormData);
+        navigate('/map'); 
+      } else {
+       
+        console.error('No coordinates found for the given location.');
+      }
+    } catch (error) {
+      console.error('Error fetching coordinates:', error);
+    }
   };
 
   return (

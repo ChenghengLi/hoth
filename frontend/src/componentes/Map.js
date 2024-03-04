@@ -31,7 +31,7 @@ const UpdateMapView = ({ center, zoom }) => {
 };
 
 
-const Map = () => {
+const Map = ({ lat = 34.071907, lon = -118.4523068}) => {
   const [markers, setMarkers] = useState([]);
   const [selectedMarkerId, setSelectedMarkerId] = useState(null);
   const [editLabel, setEditLabel] = useState('');
@@ -44,7 +44,6 @@ const Map = () => {
 
   useEffect(() => {
 
-    const { lat, lon } = locationData;
     const newCenter = [lat, lon];
     setMapCenter(newCenter); // Update map center
     setMapZoom(15); // Optionally set a new zoom level  
@@ -75,9 +74,8 @@ const Map = () => {
       url: 'https://example.com',
     };
     setMarkers(currentMarkers => [...currentMarkers, newMarker]);
-    // Set this new marker as selected for labeling
     setSelectedMarkerId(newMarker.id);
-    setEditLabel(''); // Reset edit label to be empty, ready for input
+    setEditLabel(''); 
   };
   
 
@@ -89,8 +87,8 @@ const Map = () => {
   const updateMarkerLabel = () => {
     setMarkers(currentMarkers => currentMarkers.map(marker => 
       marker.id === selectedMarkerId ? { ...marker, label: editLabel } : marker));
-    setSelectedMarkerId(null); // Reset selection
-    setEditLabel(''); // Clear edit field
+    setSelectedMarkerId(null); 
+    setEditLabel('');
   };
 
   const handleSearch = async () => {
@@ -102,7 +100,7 @@ const Map = () => {
         const position = { lat, lng: lon };
         const newCenter = [lat, lon];
         setMapCenter(newCenter); // Update map center
-        setMapZoom(15); // Optionally set a new zoom level  
+        setMapZoom(15); 
       } else {
         alert('Location not found. Please try another search.');
       }
