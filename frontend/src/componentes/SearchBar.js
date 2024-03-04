@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./../styles/SearchBar.css"; 
+import axios from 'axios'; // Import axios for API requests
 
 const SearchBar = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -13,8 +14,22 @@ const SearchBar = () => {
   };
 
   const search = async () => {
-    navigate(`/AllCompaniesPage?companyName=${encodeURIComponent(searchTerm)}`);
+    if (!searchTerm) return;
+    try {
+      const response = await axios.get(`https://nominatim.openstreetmap.org/search?format=json&q=${searchTerm}`);
+      if (response.data[0]) {
+        navigate('/map', { state: { locationData: response.data[0] } });
+      } else {
+        alert('Location not found. Please try another search.');
+      }
+    } catch (error) {
+      console.error('Failed to fetch location', error);
+      alert('Error searching for location. Please try again later.');
+    }
+    
   };
+
+
 
   return (
     <>
@@ -22,7 +37,7 @@ const SearchBar = () => {
         <input
           type="text"
           className="search-bar"
-          placeholder="Search by name or location"
+          placeholder="Search by location"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
           onKeyDown={handleKeyDown}
