@@ -6,7 +6,6 @@ import axios from 'axios'; // Import axios for API requests
 import React, { useEffect, useState } from "react";
 import {fetchObituaries} from '../data.js'
 import { useLocation, Link } from 'react-router-dom';
-import VideoScreen from './video.js'; 
 
 const customIcon = new L.Icon({
   iconUrl: tombstone,

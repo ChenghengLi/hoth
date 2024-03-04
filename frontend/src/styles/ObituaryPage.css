@@ -87,6 +87,7 @@
     margin-top:24px;
     height:34px;
     font-family: "EB Garamond";
+    margin-right:420px;
 }
 
 .messageBlock{
@@ -97,5 +98,7 @@
     width:100%;
     align-items: center;
 }
+
+
 
 

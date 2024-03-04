@@ -12,11 +12,13 @@ import f6 from './../assets/flowers/flowerviolet.svg'
 import f7 from './../assets/flowers/flowerwhite.svg'
 import f8 from './../assets/flowers/floweryellow.svg'
 import "@fontsource/eb-garamond";
-import fetchUserData from "../data.js"
+import { useNavigate } from 'react-router-dom';
 
+import fetchUserData from "../data.js"
 
 const ObituaryPage = () => {
   const [d, setd] = useState(true);
+  const navigate = useNavigate();
   const [selectedFlower, setSelectedFlower] = useState(null);
   const [messages, setMessages] = useState([
     "Pioneer of Global Health, who dedicated his life to providing medical care to the most vulnerable.",
@@ -48,6 +50,10 @@ const ObituaryPage = () => {
     border: '1px solid #ddd',
     width: 'fit-content',
     maxWidth: '90%', // Ensure the box doesn't get too wide
+  };
+  const navigateToVideoConference = () => {
+    // Navigate to the video conference page
+    navigate('/video-conference'); // Make sure the path matches your VideoScreen route
   };
 
    
@@ -98,6 +104,9 @@ const ObituaryPage = () => {
             transition: 'filter 0.5s ease', // Optional: smooth transition
           }} onClick={handleFlower(8)} src={f8}   className="flowerImg p5"/>
              <button class="p4 sendButton" onClick={sendFlower}>Send</button>
+
+             <button className="p4 sendButton" onClick={navigateToVideoConference}>Join Video Conference</button>
+
         </div>
         <div className="flowerList">
             <img src={Note }  className="actionImg p4"/>
@@ -122,7 +131,7 @@ const ObituaryPage = () => {
           ))}
         </div>
         </span>
- 
+
       </div>
 
     
