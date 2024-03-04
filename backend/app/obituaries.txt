@@ -1,4 +1,4 @@
-UID,Name,Latitude,Longitude
+UID,Name,Latitude,Longitude,Flowers
 5e1070f5-3b8e-4e88-93e7-1b68b9b3b8b4,James Smith,34.052235,-118.243683
 6a7f9082-e654-4a03-9f8e-2a3c24b6a9f7,Maria Garcia,34.098907,-118.327759
 7b8c9d13-5d7c-4edd-8f1b-3c2a1e0c9a8a,David Johnson,34.059761,-118.276802
